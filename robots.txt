@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://xn--80ab5a.xn--80adxhks/sitemap.xml
+
+Host: xn--80ab5a.xn--80adxhks
