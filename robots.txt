@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://xn--m1ach9c.xn--80adxhks/sitemap.xml
-
-Host: xn--m1ach9c.xn--80adxhks
