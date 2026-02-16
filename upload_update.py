@@ -9,7 +9,7 @@ import time
 
 TIMEOUT = 30  # Увеличен для index.html (~76KB)
 TOKEN = os.environ.get("GITHUB_TOKEN")
-OWNER = "estruve"
+OWNER = "eestruve"
 REPO = "yasno-site"
 BRANCH = "main"
 HEADERS = {

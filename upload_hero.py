@@ -5,7 +5,7 @@ import os
 
 TIMEOUT = 60  # 60 секунд для большого файла
 TOKEN = os.environ.get("GITHUB_TOKEN")
-OWNER = "estruve"
+OWNER = "eestruve"
 REPO = "yasno-site"
 BRANCH = "main"
 HEADERS = {

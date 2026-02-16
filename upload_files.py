@@ -10,7 +10,7 @@ import time
 
 TIMEOUT = 10
 TOKEN = os.environ.get("GITHUB_TOKEN")
-OWNER = "estruve"
+OWNER = "eestruve"
 REPO = "yasno-site"
 BRANCH = "main"
 HEADERS = {
