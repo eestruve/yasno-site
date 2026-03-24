@@ -1003,17 +1003,17 @@
                             btn.classList.add('opacity-70');
 
                             try {
-                                const response = await fetch('https://api.telegram.org/bot8342207449:AAGMRQCsVrEyHJMToCk2x6aWKWFPtnU4GCM/sendMessage', {
-                                    method: 'POST',
-                                    headers: { 'Content-Type': 'application/json' },
-                                    body: JSON.stringify({
-                                        chat_id: -1626760605, // ID группы (отрицательный)
-                                        text: message,
-                                        parse_mode: 'Markdown'
-                                    })
-                                });
+                                // Решение проблемы блокировки Telegram в РФ через CORS-прокси allorigins.win
+                                const chat_id = "-1001626760605"; // ID вашей супергруппы
+                                const token = "8342207449:AAGMRQCsVrEyHJMToCk2x6aWKWFPtnU4GCM";
+                                const telegramUrl = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${encodeURIComponent(message)}&parse_mode=Markdown`;
+                                const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(telegramUrl)}`;
 
-                                if (response.ok) {
+                                const response = await fetch(proxyUrl);
+                                const data = await response.json();
+                                const tgResponse = JSON.parse(data.contents);
+
+                                if (response.ok && tgResponse.ok) {
                                     btn.textContent = '✓ Заявка отправлена!';
                                     btn.classList.remove('bg-primary', 'hover:bg-primary-dark');
                                     btn.classList.add('bg-green-600');
