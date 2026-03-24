@@ -791,14 +791,7 @@
                 // Init
                 calculate();
 
-                // Form Handling
-                const form = document.querySelector('form');
-                if (form) {
-                    form.addEventListener('submit', (e) => {
-                        e.preventDefault();
-                        alert('Спасибо! Ваша заявка принята. Менеджер свяжется с вами в ближайшее время для уточнения деталей.');
-                    });
-                }
+                // Form Handling removed (redundant alert)
             });
         </script>
 
@@ -894,36 +887,15 @@
                                 <label for="phone" class="text-sm font-medium text-slate-300">Номер телефона</label>
                                 <input type="tel" id="phone" placeholder="+7 (999) 000-00-00" required maxlength="18"
                                     class="w-full bg-surface-dark border border-slate-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary placeholder-slate-500 transition-colors">
+                                <script src="https://unpkg.com/imask"></script>
                                 <script>
-                                    const phoneInput = document.getElementById('phone');
-                                    phoneInput.addEventListener('input', function (e) {
-                                        let digits = e.target.value.replace(/\D/g, '');
-
-                                        // Allow clearing completely
-                                        if (digits.length === 0) { e.target.value = ''; return; }
-
-                                        // Normalize: 8 -> 7, or prepend 7 if not starting with 7
-                                        if (digits[0] === '8') digits = '7' + digits.slice(1);
-                                        else if (digits[0] !== '7') digits = '7' + digits;
-
-                                        // Cap at 11 digits (7 + 10)
-                                        digits = digits.substring(0, 11);
-
-                                        // Format progressively
-                                        let f = '+' + digits[0];
-                                        if (digits.length >= 2) f += ' (' + digits.substring(1, Math.min(4, digits.length));
-                                        if (digits.length >= 4) f += ') ';
-                                        if (digits.length >= 5) f += digits.substring(4, Math.min(7, digits.length));
-                                        if (digits.length >= 8) f += '-' + digits.substring(7, Math.min(9, digits.length));
-                                        if (digits.length >= 10) f += '-' + digits.substring(9, 11);
-
-                                        e.target.value = f;
-                                    });
-                                    phoneInput.addEventListener('focus', function (e) {
-                                        if (!e.target.value) e.target.value = '+7 (';
-                                    });
-                                    phoneInput.addEventListener('blur', function (e) {
-                                        if (e.target.value.length <= 4) e.target.value = '';
+                                    document.addEventListener('DOMContentLoaded', () => {
+                                        const phoneInput = document.getElementById('phone');
+                                        const maskOptions = {
+                                            mask: '+{7} (000) 000-00-00',
+                                            lazy: false // Всегда показывать маску
+                                        };
+                                        const mask = IMask(phoneInput, maskOptions);
                                     });
                                 </script>
                             </div>
